@@ -13,11 +13,13 @@ function getComputerChoice() {
       return "scissors";
   }
 }
-a1.addEventListener("click",()=>playGame("rock"));
-
-a2.addEventListener("click",()=>playGame("paper"));
-
-a3.addEventListener("click",()=>playGame("scissors"));
+let gameOver=false;
+a.addEventListener("click",()=>playGame("rock"));
+b.addEventListener("click",()=>playGame("paper"));
+c.addEventListener("click",()=>playGame("scissors"));
+let human=0;
+let comp=0;
+c1=document.querySelector("ol")
 function playGame(humanChoice){
 
     if(gameOver==true){
