@@ -13,60 +13,50 @@ function getComputerChoice() {
       return "scissors";
   }
 }
-let gameOver=false;
-let buttons=document.querySelectorAll("button");
-buttons.forEach((button)=>{
-    button.addEventListener("click",()=>{
-        playGame(button.textContent.toLowerCase());
-    });
+let gameOver = false;
+let buttons = document.querySelectorAll("button");
+buttons.forEach((button) => {
+  button.addEventListener("click", () => {
+    playGame(button.textContent.toLowerCase());
+  });
 });
-let human=0;
-let comp=0;
-let round=0;
-c1=document.querySelector("div")
-function playGame(humanChoice){
+let human = 0;
+let comp = 0;
+let round = 0;
+c1 = document.querySelector("div");
+let humanScore = document.querySelector("#humanScore");
+let compScore = document.querySelector("#compScore");
+function playGame(humanChoice) {
+  if (gameOver == true) {
+    return;
+  }
 
-    if(gameOver==true){
-        return;
-    }
+  let compo = getComputerChoice();
 
-    let c2=document.createElement("div");
-    let c4=document.createElement("p");
-    let c5=document.createElement("p");
+  if (humanChoice === compo) {
+    // Draw
+  } else if (
+    (humanChoice === "rock" && compo === "scissors") ||
+    (humanChoice === "paper" && compo === "rock") ||
+    (humanChoice === "scissors" && compo === "paper")
+  ) {
+    ++human;
+  } else {
+    ++comp;
+  }
+  ++round;
+  humanScore.textContent = human;
+  compScore.textContent = comp;
 
-    let compo=getComputerChoice();
-
-    if(humanChoice===compo){
-        // Draw
-    }
-    else if(
-        (humanChoice==="rock" && compo==="scissors") ||
-        (humanChoice==="paper" && compo==="rock") ||
-        (humanChoice==="scissors" && compo==="paper")
-    ){
-        ++human;
-    }
-    else{
-        ++comp;
-    }
-    ++round
-    c4.textContent=round+". User: "+human;
-    c5.textContent=""+"Comp: "+comp;
-
-    c2.appendChild(c4);
-    c2.appendChild(c5);
-    c1.appendChild(c2);
-
-    if(human==5){
-        let c6=document.createElement("p");
-        c6.textContent="You won";
-        document.body.appendChild(c6);
-        gameOver=true;
-    }
-    else if(comp==5){
-        let c6=document.createElement("p");
-        c6.textContent="You lost";
-        document.body.appendChild(c6);
-        gameOver=true;
-    }
+  if (human == 5) {
+    let c6 = document.createElement("p");
+    c6.textContent = "You won";
+    document.body.appendChild(c6);
+    gameOver = true;
+  } else if (comp == 5) {
+    let c6 = document.createElement("p");
+    c6.textContent = "You lost";
+    document.body.appendChild(c6);
+    gameOver = true;
+  }
 }
