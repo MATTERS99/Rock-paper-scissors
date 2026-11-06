@@ -14,19 +14,23 @@ function getComputerChoice() {
   }
 }
 let gameOver=false;
-a.addEventListener("click",()=>playGame("rock"));
-b.addEventListener("click",()=>playGame("paper"));
-c.addEventListener("click",()=>playGame("scissors"));
+let buttons=document.querySelectorAll("button");
+buttons.forEach((button)=>{
+    button.addEventListener("click",()=>{
+        playGame(button.textContent.toLowerCase());
+    });
+});
 let human=0;
 let comp=0;
-c1=document.querySelector("ol")
+let round=0;
+c1=document.querySelector("div")
 function playGame(humanChoice){
 
     if(gameOver==true){
         return;
     }
 
-    let c2=document.createElement("li");
+    let c2=document.createElement("div");
     let c4=document.createElement("p");
     let c5=document.createElement("p");
 
@@ -45,9 +49,9 @@ function playGame(humanChoice){
     else{
         ++comp;
     }
-
-    c4.textContent="User: "+human;
-    c5.textContent="Comp: "+comp;
+    ++round
+    c4.textContent=round+". User: "+human;
+    c5.textContent=""+"Comp: "+comp;
 
     c2.appendChild(c4);
     c2.appendChild(c5);
